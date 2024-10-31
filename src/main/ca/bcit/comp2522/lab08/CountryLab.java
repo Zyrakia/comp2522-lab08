@@ -16,7 +16,7 @@ import java.util.List;
  * @author Ole Lammers, Tianyou Xie
  * @version 1.0
  */
-public class Main {
+public class CountryLab {
 
     public static final CountriesProcessor[] PROCESSORS = { new LongNames(), new ShortNames(), new StartingWithA(),
                                                             new EndingWithLand(), new ContainingUnited(),
@@ -49,8 +49,8 @@ public class Main {
             Files.writeString(outputFilePath, "", StandardOpenOption.TRUNCATE_EXISTING);
         }
 
-        for (int i = 0; i < Main.PROCESSORS.length; i++) {
-            final CountriesProcessor processor = Main.PROCESSORS[i];
+        for (int i = 0; i < CountryLab.PROCESSORS.length; i++) {
+            final CountriesProcessor processor = CountryLab.PROCESSORS[i];
             if (processor == null) {
                 continue;
             }
@@ -61,7 +61,7 @@ public class Main {
             linesToWrite.add(processor.getTitle() + ":");
             linesToWrite.addAll(processor.process(countries));
 
-            if (i != Main.PROCESSORS.length - 1) {
+            if (i != CountryLab.PROCESSORS.length - 1) {
                 linesToWrite.add("");
             }
 

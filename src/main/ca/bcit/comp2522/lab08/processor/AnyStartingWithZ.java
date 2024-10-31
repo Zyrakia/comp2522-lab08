@@ -17,7 +17,7 @@ public class AnyStartingWithZ extends CountriesProcessor {
      * Creates a new processor.
      */
     public AnyStartingWithZ() {
-        super("Any Name Starts with \"" + AnyStartingWithZ.START_CHAR + "\"");
+        super("Any Name Starts with '" + AnyStartingWithZ.START_CHAR + "'");
     }
 
     @Override

@@ -17,7 +17,7 @@ public class StartingWithA extends CountriesProcessor {
      * Creates a new processor.
      */
     public StartingWithA() {
-        super("Country names that start with \"" + StartingWithA.START_CHAR + "\"");
+        super("Country names starting with '" + StartingWithA.START_CHAR + "'");
     }
 
     @Override
