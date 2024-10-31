@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.lab08;
 
-import ca.bcit.comp2522.lab08.filter.CountriesProcessor;
-import ca.bcit.comp2522.lab08.filter.LongCountryNames;
+import ca.bcit.comp2522.lab08.processor.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,8 +18,8 @@ import java.util.List;
  */
 public class Main {
 
-    public static final CountriesProcessor[] FILTERS = {
-            new LongCountryNames() };
+    public static final CountriesProcessor[] PROCESSORS = { new LongCountryNames(), new ShortCountryNames(),
+                                                            new StartingWithA(), new EndingWithLand() };
 
     /**
      * Entry point for the driver class.
@@ -41,18 +40,27 @@ public class Main {
         outputFilePath = matchesDirectoryPath.resolve("data.txt");
         if (Files.notExists(outputFilePath)) {
             Files.createFile(outputFilePath);
+        } else {
+            Files.writeString(outputFilePath, "", StandardOpenOption.TRUNCATE_EXISTING);
         }
 
-        for (final CountriesProcessor filter : Main.FILTERS) {
+        for (int i = 0; i < Main.PROCESSORS.length; i++) {
+            final CountriesProcessor processor = Main.PROCESSORS[i];
+            if (processor == null) {
+                continue;
+            }
+
             final List<String> linesToWrite;
             linesToWrite = new ArrayList<>();
 
-            linesToWrite.add(filter.getTitle() + ":");
-            linesToWrite.addAll(filter.process(countries));
-            linesToWrite.add("");
+            linesToWrite.add(processor.getTitle() + ":");
+            linesToWrite.addAll(processor.process(countries));
 
-            Files.write(outputFilePath, linesToWrite,
-                        StandardOpenOption.APPEND);
+            if (i != Main.PROCESSORS.length - 1) {
+                linesToWrite.add("");
+            }
+
+            Files.write(outputFilePath, linesToWrite, StandardOpenOption.APPEND);
         }
     }
 
