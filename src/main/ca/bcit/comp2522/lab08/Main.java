@@ -18,8 +18,13 @@ import java.util.List;
  */
 public class Main {
 
-    public static final CountriesProcessor[] PROCESSORS = { new LongCountryNames(), new ShortCountryNames(),
-                                                            new StartingWithA(), new EndingWithLand() };
+    public static final CountriesProcessor[] PROCESSORS = { new LongNames(), new ShortNames(), new StartingWithA(),
+                                                            new EndingWithLand(), new ContainingUnited(),
+                                                            new Alphabetical(), new ReverseAlphabetical(),
+                                                            new UniqueFirstLetters(), new TotalCount(),
+                                                            new LongestName(), new ShortestName(), new UpperNames(),
+                                                            new MultiWordNames(), new NamesWithLength(),
+                                                            new AnyStartingWithZ(), new AllNamesMinimumLength() };
 
     /**
      * Entry point for the driver class.

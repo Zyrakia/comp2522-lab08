@@ -1,9 +1,9 @@
-package ca.bcit.comp2522.lab08.filter;
+package ca.bcit.comp2522.lab08.processor;
 
 import java.util.List;
 
 /**
- * Represents a processor that can operate on a list of country names..
+ * Represents a processor that can operate on a list of country names.
  *
  * @author Ole Lammers, Tianyou Xie
  * @version 1.0
@@ -29,13 +29,11 @@ public abstract class CountriesProcessor {
      */
     private static void validateTitle(final String title) {
         if (title == null || title.isBlank()) {
-            throw new IllegalArgumentException(
-                    "Processor title cannot be empty or null.");
+            throw new IllegalArgumentException("Processor title cannot be empty or null.");
         }
 
         if (title.contains(System.lineSeparator())) {
-            throw new IllegalArgumentException(
-                    "Processor title must be a single line.");
+            throw new IllegalArgumentException("Processor title must be a single line.");
         }
     }
 
